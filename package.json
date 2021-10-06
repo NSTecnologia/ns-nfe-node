@@ -1,0 +1,22 @@
+{
+  "name": "ns-nfe-node",
+  "version": "1.0.0",
+  "description": "Biblioteca em Node.js para emissão de NFe em comunicação com a API da NS Tecnologia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NSTecnologia/ns-nfe-node.git"
+  },
+  "author": "Integração @ NS Tecnologia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NSTecnologia/ns-nfe-node/issues"
+  },
+  "homepage": "https://github.com/NSTecnologia/ns-nfe-node#readme",
+  "dependencies": {
+    "axios": "^0.22.0"
+  }
+}
