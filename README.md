@@ -111,7 +111,15 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
 
 ### Consulta de cadastro de contribuinte
 
-       codigo
+       const consultaCad = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/consultarCadastro')
+
+       let corpo = new consultaCad.body(
+           "14139046000109",
+           "RS",
+           "190185748"
+       )
+
+       consultaCad.sendPostRequest(corpo).then(getResponse => { console.log(getResponse) })
 
 ### Consultar situação de NFe
         
@@ -122,7 +130,16 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
         
 ### Consultar Status de Web Service
 
-    codigo
+       const consultarStatusWS = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/consultarStatusWS')
+
+       let corpo = new consultarStatusWS.body(
+           "14139046000109",
+           "43",
+           "2",
+           "4.00"
+       )
+
+       consultarStatusWS.sendPostRequest(corpo).then(() => {})
 
 ### Agendamento de Envio de E-Mail de NFe
         
@@ -130,7 +147,7 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
         
 ### Gerar PDF a partir de um XML de NFe Autorizada
         
-        codigo
+       codigo
         
 ### Listagem de nsNRec's vinculados à uma NFe
 
