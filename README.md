@@ -73,14 +73,24 @@ Os parametros informados no método são:
 
 Para emitirmos uma carta de correção de uma NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *CartaCorrecao.Body*, e utilzar o método *CartaCorrecao.sendPostRequest*, da seguinte forma:
 
-       codigo
+       const cartaCorrecaoNFe = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/eventos/cartaCorrecao')
+       const util = require('./node_modules/ns-nfe-node/ns_modules/api_module/util')
+
+       let corpo = new cartaCorrecaoNFe.body(
+           "43211007364617000135550000000225371500930711",
+           "2",
+           util.dhEmiGet(),
+           "2",
+           "CARTA DE CORRECAO ADICIONADA PARA TESTES DE INTEGRACAO COM EXEMPLO NODE JS"
+       )
+
+       cartaCorrecaoNFe.sendPostRequest(corpo, "XP", "Documentos/NFe/Eventos").then(() => {})
         
 Os parametros informados no método são:
 
-+ *requisicaoCorrecao* =  Objeto contendo as informações do corpo da requisição da carta de correção;
++ *corpo* =  Objeto contendo as informações do corpo da requisição da carta de correção;
 + "XP" = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no download do evento de carta de correção;
-+ *@"NFe/Eventos/"* = diretório onde serão salvos os arquivos obtidos no download do evento de carta de correção;
-+ *true* = exibeNaTela = parametro boolean que indica se será exibido na tela, ou não, o PDF obtido no download do evento de carta de correção;
++ *"Documentos/NFe/Eventos"* = diretório onde serão salvos os arquivos obtidos no download do evento de carta de correção;
 
 ### Inutilização de numeração da NFe
 
