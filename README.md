@@ -1,5 +1,4 @@
 # ns-nfe-node
-# ns-nfe-core
 
 Esta biblioteca possibilita a comunicação e o consumo da solução API para NFe da NS Tecnologia.
 
