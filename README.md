@@ -58,9 +58,20 @@ Podemos acessarmos os dados de retorno e aplicarmos validações da seguinte for
 
 ### Cancelar NFe
 
-Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *Cancelamento.Body*, e utilzar o método *Cancelamento.sendPostRequest*, da seguinte forma:
+Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da requisição da seguinte forma e depois, fazer a chamada do método para cancelamento:
        
-       codigo
+       const cancelarNFe = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/eventos/cancelamento')
+       const util = require('./node_modules/ns-nfe-node/ns_modules/api_module/util')
+
+       let corpo = new cancelarNFe.body(
+           "43210914139046000109550000000257891100116493",
+           "2",
+           util.dhEmiGet(),
+           "135210000895542",
+           "CANCELAMENTO REALIZADO PARA TESTES DE INTEGRACAO EXEMPLO NODE JS"
+       )
+
+       cancelarNFe.sendPostRequest(corpo, "X", "Documentos/NFe/Eventos").then(() => { })
         
 Os parametros informados no método são:
 
@@ -77,7 +88,7 @@ Para emitirmos uma carta de correção de uma NFe, devemos gerar o objeto do cor
        const util = require('./node_modules/ns-nfe-node/ns_modules/api_module/util')
 
        let corpo = new cartaCorrecaoNFe.body(
-           "43211007364617000135550000000225371500930711",
+           "43210914139046000109550000000257891100116493",
            "2",
            util.dhEmiGet(),
            "2",
@@ -146,7 +157,7 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
        const enviarEmail = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/envioEmail')
 
        let corpo = new enviarEmail.body(
-           "43211007364617000135550000000225371500930711",
+           "43210914139046000109550000000257891100116493",
            "2",
            "true",
            "true",
@@ -154,10 +165,6 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
        )
 
        enviarEmail.sendPostRequest(corpo).then(() => { })
-        
-### Gerar PDF a partir de um XML de NFe Autorizada
-        
-       codigo
         
 ### Listagem de nsNRec's vinculados à uma NFe
 
@@ -168,7 +175,10 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
 
 ### Gerar prévia de DANFE 
 
-        codigo
+       const nsAPI = require('ns-nfe-node/ns_modules/nfe_module/util/previa')
+       const nfeJSON = require('./nfe.json')
+
+       var previa = nsAPI.sendPostRequest(nfeJSON).then(() => { () })
 
 ### Informações Adicionais
 
