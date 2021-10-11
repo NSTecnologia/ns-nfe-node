@@ -8,7 +8,7 @@ Para imlementar esta bibilioteca em seu projeto, você pode:
 
        npm install ns-nfe-node
 
-2. Realizar o download da biblioteca pelo [GitHub](https://github.com/konflanzzz/ns-nfe-core/archive/refs/heads/main.zip) e adicionar a pasta "ns-modules" em seu projeto.
+2. Realizar o download da biblioteca pelo [GitHub](https://github.com/NSTecnologia/ns-nfe-node/archive/refs/heads/main.zip) e adicionar a pasta "ns-modules" em seu projeto.
 
 # Exemplos de uso do pacote
 
@@ -42,8 +42,6 @@ Este método realiza a emissão, a consulta de status de processamento e o downl
        retorno.then(()=>)
 
 Os parametros deste método são:
-
-       codigo
 
 + *nfeJSON* = objeto NFe que será serializado para envio;
 + + *2* = tpAmb = ambiente onde será autorizado a NFe. *1 = produção, 2 = homologação / testes* ;
@@ -107,7 +105,11 @@ Os parametros informados no método são:
 
 Para emitirmos uma inutilização de numeração da NFe, devemos gerar o objeto do corpo da requisição, utilizando a classe *Inutilizacao.Body*, e utilzar o método *Inutilizacao.sendPostRequest*, da seguinte forma:
 
-       codigo
+       const inutilizarNFe = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/eventos/inutilizacao')
+
+       let corpo = new inutilizarNFe.body("43", "2", "21", "14139046000109", "0", "22539", "22539", "INUTILIZADO PARA TESTES DE INTEGRACAO")
+
+       inutilizarNFe.sendPostRequest(corpo, "X", "Documentos/NFe/Eventos").then(getResponse => { console.log(getResponse) })
         
 Os parametros informados no método são:
 
