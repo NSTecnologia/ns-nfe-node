@@ -143,7 +143,17 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
 
 ### Agendamento de Envio de E-Mail de NFe
         
-       codigo
+       const enviarEmail = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/envioEmail')
+
+       let corpo = new enviarEmail.body(
+           "43211007364617000135550000000225371500930711",
+           "2",
+           "true",
+           "true",
+           "fernando.konflanz@nstecnologia.com.br"
+       )
+
+       enviarEmail.sendPostRequest(corpo).then(() => { })
         
 ### Gerar PDF a partir de um XML de NFe Autorizada
         
