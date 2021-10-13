@@ -1,5 +1,5 @@
 const axios = require('axios')
-const configParceiro = require('../../configParceiro')
+const configParceiro = require('../../../../configParceiro')
 const util = require('./util')
 
 const header = {
