@@ -2,9 +2,9 @@
 
 Esta biblioteca possibilita a comunicação e o consumo da solução API para NFe da NS Tecnologia.
 
-Para imlementar esta bibilioteca em seu projeto, você pode:
+Para implementar esta bibilioteca em seu projeto, você pode:
 
-1. Realizar a instalação do [pacote](https://www.nuget.org/packages/ns-nfe-core/) através do npm:
+1. Realizar a instalação do [pacote](https://www.npmjs.com/package/ns-nfe-node) através do npm:
 
        npm install ns-nfe-node
 
