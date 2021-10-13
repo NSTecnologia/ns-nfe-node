@@ -47,11 +47,82 @@ Os parâmetros deste método são:
 + *2* = tpAmb = ambiente onde será autorizado a NFe. *1 = produção, 2 = homologação / testes* ;
 + *"XP"* = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no Download;
 + *"Documentos/NFe"* = diretório onde serão salvos os documentos obtidos no download;
+
+O retorno deste método é um objeto json contendo um compilado dos retornos dos métodos realizados pela emissão sincrona:
+
+       responseSincrono {
+           statusEnvio: 200,
+           statusConsulta: 200,
+           statusDownload: 200,
+           cStat: 100,
+           motivo: 'Consulta realizada com sucesso',
+           xMotivo: 'Autorizado o uso da NF-e',
+           nsNRec: '3753664',
+           chNFe: '43210914139046000109550000000257891100116493',
+           nProt: '135210000895542',
+           xml: '<?xml version="1.0" encoding="utf-8"?><nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe"><NFe><infNFe versao=...</nfeProc>',
+           json: undefined, // json da NFe autorizada quando tpDown = "J", ou "JP"
+           pdf: undefined, // base64 do PDF da NFe ( DANFE ) autorizada quando tpDown = "P", "XP", "JP"
+           erros: undefined // array de erros quando a comunicação, emissão, ou processamento apresentar erros
+         }
+       }
     
 Podemos acessarmos os dados de retorno e aplicarmos validações da seguinte forma. Tenhamos como exemplo:
 
-       exemplo do objeto de retorno
-       código de como ler o retorno e tratar
+       if (retorno.statusEnvio == "200" || retorno.statusEnvio == "-6" || retorno.statusEnvio == "-7") {
+           var statusEnvio = retorno.statusEnvio;
+           var nsNRec = retorno.nsNRec;
+
+           // Verifica se houve sucesso na consulta
+           if (retorno.statusConsulta == "200") {
+               var statusConsulta = retorno.statusConsulta
+               var motivo = retorno.motivo
+               var xMotivo = retorno.xMotivo
+
+               // Verifica se a nota foi autorizada
+               if (retorno.cStat == "100" || retorno.cStat == "150") {
+                   // Documento autorizado com sucesso
+                   var cStat = retorno.cStat
+                   var chNFe = retorno.chNFe
+                   var nProt = retorno.nProt
+                   var statusDownload = retorno.statusDownload
+
+                   if (retorno.statusDownload == "200") {
+                       // Verifica de houve sucesso ao realizar o downlaod da NFe
+                       let xml = retorno.xml
+                       let json = retorno.json
+                       let pdf = retorno.pdf
+                   }
+
+                   else {
+                       // Aqui você pode realizar um tratamento em caso de erro no download
+                       statusDownload = retorno.statusDownload
+                       let erros = retorno.erros
+                   }
+               }
+
+               else {
+                   // NFe não foi autorizada com sucesso ou retorno diferente de 100 / 150
+                   motivo = retorno.motivo
+                   xMotivo = retorno.xMotivo
+                   let erros = retorno.erros
+               }
+           }
+
+           else {
+               // Consulta não foi realizada com sucesso ou com retorno diferente de 200
+               var motivo = retorno.motivo;
+               var xMotivo = retorno.xMotivo;
+               var erros = retorno.erros;
+           }
+       }
+       else {
+           // NFe não foi enviada com sucesso
+           var statusEnvio = retorno.statusEnvio;
+           var motivo = retorno.motivo;
+           var xMotivo = retorno.xMotivo;
+           var erros = retorno.erros;
+       }
 
 ## Eventos
 
