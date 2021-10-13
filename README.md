@@ -44,19 +44,20 @@ Este método realiza a emissão, a consulta de status de processamento e o downl
 Os parametros deste método são:
 
 + *nfeJSON* = objeto NFe que será serializado para envio;
-+ + *2* = tpAmb = ambiente onde será autorizado a NFe. *1 = produção, 2 = homologação / testes* ;
++ *2* = tpAmb = ambiente onde será autorizado a NFe. *1 = produção, 2 = homologação / testes* ;
 + *"XP"* = tpDown = tipo de download, indicando quais os tipos de arquivos serão obtidos no Download;
 + *"Documentos/NFe"* = diretório onde serão salvos os documentos obtidos no download;
     
 Podemos acessarmos os dados de retorno e aplicarmos validações da seguinte forma. Tenhamos como exemplo:
 
+       exemplo do objeto de retorno
        codigo de como ler o retorno e tratar
 
 ## Eventos
 
 ### Cancelar NFe
 
-Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da requisição da seguinte forma e depois, fazer a chamada do método para cancelamento:
+Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da requisição e depois, fazer a chamada do método. Veja um exemplo:
        
        const cancelarNFe = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/eventos/cancelamento')
        const util = require('./node_modules/ns-nfe-node/ns_modules/api_module/util')
