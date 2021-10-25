@@ -28,6 +28,7 @@ class Response {
 async function sendPostRequest(body, caminho) {
     
     try {
+        
         let responseAPI = new Response(await nsAPI.PostRequest(url, body))
 
         if (responseAPI.json != null) {

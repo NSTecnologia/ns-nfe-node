@@ -49,7 +49,6 @@ async function sendPostRequest(conteudo, caminhoSalvar) {
         return error
     }
 
-
 }
 
 module.exports = { Body, sendPostRequest }
