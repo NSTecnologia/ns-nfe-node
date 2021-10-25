@@ -1,5 +1,5 @@
 const axios = require('axios')
-const configParceiro = require('../../configParceiro')
+const configParceiro = require('../../../../configParceiro')
 const util = require('./util')
 
 const header = {
@@ -24,7 +24,7 @@ async function PostRequest(url, body) {
         })
 
         .catch(getResponse => {
-            util.gravarLinhaLog('[DADOS_RESPOSTA]: ' + JSON.stringify(getResponse.response.data))
+            util.gravarLinhaLog('[ERRO_ENVIAR_REQUISICAO]: ' + JSON.stringify(getResponse.response.data))
 
             responseAPI = getResponse.response.data
 

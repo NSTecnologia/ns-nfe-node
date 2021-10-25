@@ -26,14 +26,25 @@ class response {
 }
 
 async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
+    
+    try {
+        
+        let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
 
-    let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+        let downloadInutBody = new downloadInut.body(responseAPI.retornoInutNFe.chave, "2", tpDown)
 
-    let downloadInutBody = new downloadInut.body(responseAPI.retornoInutNFe.chave,"2",tpDown)
+        let downloadInutResponse = await downloadInut.sendPostRequest(downloadInutBody, caminhoSalvar)
 
-    let downloadInutResponse = await downloadInut.sendPostRequest(downloadInutBody, caminhoSalvar)
+        return downloadInutResponse
 
-    return downloadInutResponse
+    } 
+    
+    catch (error) {
+        
+        return error
+    }
+
+
 }
 
 module.exports = { body, sendPostRequest }

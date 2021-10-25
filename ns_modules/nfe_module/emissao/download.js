@@ -26,24 +26,32 @@ class response {
 }
 
 async function sendPostRequest(body, caminho) {
+    try {
+        let responseAPI = new response(await nsAPI.PostRequest(url, body))
+
+        if (responseAPI.json != null) {
+            util.salvarArquivo(caminho, responseAPI.chNFe, "-nfeProc.json", responseAPI.json)
+        }
+
+        if (responseAPI.pdf != null) {
+            let data = responseAPI.pdf;
+            let buff = Buffer.from(data, 'base64');
+            util.salvarArquivo(caminho, responseAPI.chNFe, "-nfeProc.pdf", buff)
+        }
+
+        if (responseAPI.xml != null) {
+            util.salvarArquivo(caminho, responseAPI.chNFe, "-nfeProc.xml", responseAPI.xml)
+        }
+
+        return responseAPI
+    } 
     
-    let responseAPI = new response(await nsAPI.PostRequest(url, body))
-
-    if (responseAPI.json != null){
-        util.salvarArquivo(caminho, responseAPI.chNFe,"-nfeProc.json",responseAPI.json)
+    catch (error) {
+        util.gravarLinhaLog("[ERRO_DOWNLOAD]: " + error)
+        return error
     }
+    
 
-    if (responseAPI.pdf != null) {
-        let data = responseAPI.pdf;
-        let buff = Buffer.from(data, 'base64');
-        util.salvarArquivo(caminho, responseAPI.chNFe, "-nfeProc.pdf", buff)
-    }
-
-    if (responseAPI.xml != null) {
-        util.salvarArquivo(caminho, responseAPI.chNFe, "-nfeProc.xml", responseAPI.xml)
-    }
-
-    return responseAPI
 }
 
 module.exports = { body, sendPostRequest }

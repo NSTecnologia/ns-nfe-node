@@ -1,4 +1,5 @@
-const nsAPI = require('../../api_module/nsAPI')
+const nsAPI = require('../../api_module/nsAPI');
+const { gravarLinhaLog } = require('../../api_module/util');
 const url = "https://nfe.ns.eti.br/nfe/issue/status"
 
 class body {
@@ -24,8 +25,17 @@ class response {
 }
 
 async function sendPostRequest(body) {
-    let responseAPI = new response(await nsAPI.PostRequest(url, body))
-    return responseAPI
+    
+    try {
+        let responseAPI = new response(await nsAPI.PostRequest(url, body))
+        return responseAPI
+    } 
+    
+    catch (error) {
+        gravarLinhaLog("[ERRO_CONSULTA_STATUS_PROCESSAMENTO]: " + error)
+        return error
+    }
+
 }
 
 module.exports = { body, sendPostRequest }

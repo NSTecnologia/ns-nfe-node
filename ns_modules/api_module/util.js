@@ -15,7 +15,7 @@ function gravarLinhaLog(registro) {
     let logTime = new Date()
     logTime = logTime.toLocaleTimeString() + ":" + logTime.getMilliseconds()
 
-    var caminhoLog = "../../../logs"
+    var caminhoLog = "./logs"
 
     var fileName = new Date().toISOString().slice(0, 10).replace("-", "").replace("-", "")
 
@@ -26,7 +26,7 @@ function gravarLinhaLog(registro) {
                 salvarArquivo(caminhoLog, fileName, ".log", logTime + " " + registro + "\r\n")
             }
             catch (error) {
-                console.log(error)
+                console.log("ERRO_GERAR_ARQUIVO_LOG: " + error)
             }
         }
 
@@ -38,7 +38,7 @@ function gravarLinhaLog(registro) {
     }
 
     catch (err) {
-        console.log(err);
+        console.log("ERRO_GERAR_DIRETORIO_LOG: " + error)
     }
 }
 
@@ -51,11 +51,12 @@ async function salvarArquivo(caminho, nomeArquivo, extensao, conteudo) {
     }
 
     catch (err) {
-        console.log(err);
+        console.log("ERRO_CRIAR_DIRETORIO: " + err);
     }
 
     fs.writeFile(caminhoSalvar, conteudo, function (err) {
         if (err) throw err;
+        console.log("ERRO_SALVAR_ARQUIVO: " + err);
     });
 
 }

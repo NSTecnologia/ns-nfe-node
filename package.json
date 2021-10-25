@@ -1,22 +1,50 @@
 {
-  "name": "ns-nfe-node",
-  "version": "1.0.0",
-  "description": "Biblioteca em Node.js para emissão de NFe em comunicação com a API da NS Tecnologia",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "ns-nfe-node",
+  "_id": "ns-nfe-node@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-Tb0opPOMmlHGWlbwzUZDOXyG9YNn8dERZlZ07MF37EtvsC9m3SNe2Dt8SqunjsXjKhZK8Wl+UkcNan1uq4dktw==",
+  "_location": "/ns-nfe-node",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "ns-nfe-node",
+    "name": "ns-nfe-node",
+    "escapedName": "ns-nfe-node",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ns-nfe-node/-/ns-nfe-node-1.0.1.tgz",
+  "_shasum": "5b22c42b6917da9e6c53a991bd2a5dcce03df5d4",
+  "_spec": "ns-nfe-node",
+  "_where": "C:\\testesNFe",
+  "author": {
+    "name": "Integração @ NS Tecnologia"
+  },
+  "bugs": {
+    "url": "https://github.com/NSTecnologia/ns-nfe-node/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "axios": "^0.22.0"
+  },
+  "deprecated": false,
+  "description": "Biblioteca em Node.js para emissão de NFe em comunicação com a API da NS Tecnologia",
+  "homepage": "https://github.com/NSTecnologia/ns-nfe-node#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "ns-nfe-node",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NSTecnologia/ns-nfe-node.git"
   },
-  "author": "Integração @ NS Tecnologia",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NSTecnologia/ns-nfe-node/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/NSTecnologia/ns-nfe-node#readme",
-  "dependencies": {
-    "axios": "^0.22.0"
-  }
+  "version": "1.0.3"
 }

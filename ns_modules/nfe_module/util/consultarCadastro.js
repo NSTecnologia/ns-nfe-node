@@ -1,4 +1,5 @@
-const nsAPI = require('../../api_module/nsAPI')
+const nsAPI = require('../../api_module/nsAPI');
+const { gravarLinhaLog } = require('../../api_module/util');
 
 const url = "https://nfe.ns.eti.br/util/conscad"
 
@@ -22,8 +23,13 @@ class response {
 }
 
 async function sendPostRequest(conteudo) {
-    let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
-    return responseAPI
+    try {
+        let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+        return responseAPI
+    } catch (error) {
+        gravarLinhaLog("[ERRO]")
+    }
+
 }
 
 module.exports = { body, sendPostRequest }

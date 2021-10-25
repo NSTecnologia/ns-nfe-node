@@ -1,7 +1,7 @@
 const statusProcessamento = require('./statusProcessamento')
 const download = require('./download')
 const emitir = require('./emitir')
-const configParceiro = require('../../../configParceiro')
+const configParceiro = require('../../../../../configParceiro')
 
 class responseSincrono {
     constructor(statusEnvio, statusConsulta, statusDownload, cStat, motivo, xMotivo, nsNRec, chNFe, nProt, xml, json, pdf, erros) {
@@ -114,7 +114,7 @@ async function emitirNFeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
 
         catch (error) {
 
-            respostaSincrona.motivo = JSON.stringify("ERRO: " + error + "\r\n" + emissaoResponse) 
+            respostaSincrona.motivo = JSON.stringify("ERRO: " + error + "\r\n" + emissaoResponse)
         }
     }
 
