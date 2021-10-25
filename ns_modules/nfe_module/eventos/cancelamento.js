@@ -4,7 +4,7 @@ const downloadEvento = require('./downloadEvento')
 
 const url = "https://nfe.ns.eti.br/nfe/cancel"
 
-class body {
+class Body {
     constructor(chNFe, tpAmb, dhEvento, nProt, xJust) {
         this.chNFe = chNFe;
         this.tpAmb = tpAmb;
@@ -14,7 +14,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retEvento, erro }) {
         this.status = status;
         this.motivo = motivo;
@@ -24,14 +24,16 @@ class response {
 }
 
 async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
+
     try {
-        let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+        
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
         if (responseAPI.status == 200) {
 
             if (responseAPI.retEvento.cStat == 135) {
 
-                let downloadEventoBody = new downloadEvento.body(
+                let downloadEventoBody = new downloadEvento.Body(
                     responseAPI.retEvento.chNFe,
                     conteudo.tpAmb,
                     tpDown,
@@ -62,4 +64,4 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
     }
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

@@ -3,7 +3,7 @@ const downloadEvento = require('./downloadEvento')
 
 const url = "https://nfe.ns.eti.br/nfe/cce"
 
-class body {
+class Body {
     constructor(chNFe, tpAmb, dhEvento, nSeqEvento, xCorrecao) {
         this.chNFe = chNFe;
         this.tpAmb = tpAmb;
@@ -13,7 +13,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retEvento, erros }) {
         this.status = status;
         this.motivo = motivo;
@@ -25,7 +25,8 @@ class response {
 async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
     
     try {
-        let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
         if (responseAPI.status == 200) {
 
@@ -54,10 +55,11 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
 
         return responseAPI
     }
+    
     catch (error) {
         gravarLinhaLog("[ERRO_CANCELAMENTO]: " + error)
         return error
     }
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

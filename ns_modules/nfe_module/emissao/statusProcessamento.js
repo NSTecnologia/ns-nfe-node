@@ -2,7 +2,7 @@ const nsAPI = require('../../api_module/nsAPI');
 const { gravarLinhaLog } = require('../../api_module/util');
 const url = "https://nfe.ns.eti.br/nfe/issue/status"
 
-class body {
+class Body {
    constructor(CNPJ, nsNRec, tpAmb) {
        this.CNPJ = CNPJ;
        this.nsNRec = nsNRec;
@@ -10,7 +10,7 @@ class body {
    }
 }
 
-class response {
+class Response {
     constructor({status, motivo, chNFe, cStat,xMotivo, xml, nProt, dhRecbto, erro}) {
         this.status = status;
         this.motivo = motivo;
@@ -27,7 +27,7 @@ class response {
 async function sendPostRequest(body) {
     
     try {
-        let responseAPI = new response(await nsAPI.PostRequest(url, body))
+        let responseAPI = new Response(await nsAPI.PostRequest(url, body))
         return responseAPI
     } 
     
@@ -38,4 +38,4 @@ async function sendPostRequest(body) {
 
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

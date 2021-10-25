@@ -3,7 +3,7 @@ const util = require('../../api_module/util')
 
 const url = "https://nfe.ns.eti.br/nfe/get/inut"
 
-class body {
+class Body {
     constructor(chave, tpAmb, tpDown) {
         this.chave = chave;
         this.tpAmb = tpAmb;
@@ -11,7 +11,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retInut, erros}) {
         this.status = status;
         this.motivo = motivo;
@@ -21,9 +21,10 @@ class response {
 }
 
 async function sendPostRequest(conteudo, caminhoSalvar) {
+
     try {
 
-        let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
         if (responseAPI.retInut.json != null) {
             util.salvarArquivo(caminhoSalvar, responseAPI.retInut.chave, "-procInut.json", responseAPI.retInut.json)
@@ -41,7 +42,9 @@ async function sendPostRequest(conteudo, caminhoSalvar) {
 
         return responseAPI
 
-    } catch (error) {
+    } 
+    
+    catch (error) {
         util.gravarLinhaLog("[ERRO_DOWNLOAD_INUTILIZACAO]: " + error)
         return error
     }
@@ -49,4 +52,4 @@ async function sendPostRequest(conteudo, caminhoSalvar) {
 
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

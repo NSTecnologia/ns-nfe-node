@@ -3,7 +3,7 @@ const downloadInut = require("./downloadInutilizacao")
 
 const url = "https://nfe.ns.eti.br/nfe/inut"
 
-class body {
+class Body {
     constructor(cUF, tpAmb, ano, CNPJ, serie, nNFIni, nNFFin, xJust) {
         this.cUF = cUF;
         this.tpAmb = tpAmb;
@@ -16,7 +16,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retornoInutNFe, erros }) {
         this.status = status;
         this.motivo = motivo;
@@ -29,9 +29,9 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
     
     try {
         
-        let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
-        let downloadInutBody = new downloadInut.body(responseAPI.retornoInutNFe.chave, "2", tpDown)
+        let downloadInutBody = new downloadInut.Body(responseAPI.retornoInutNFe.chave, "2", tpDown)
 
         let downloadInutResponse = await downloadInut.sendPostRequest(downloadInutBody, caminhoSalvar)
 
@@ -47,4 +47,4 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
 
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

@@ -24,6 +24,7 @@ async function PostRequest(url, body) {
         })
 
         .catch(getResponse => {
+            
             util.gravarLinhaLog('[ERRO_ENVIAR_REQUISICAO]: ' + JSON.stringify(getResponse.response.data))
 
             responseAPI = getResponse.response.data

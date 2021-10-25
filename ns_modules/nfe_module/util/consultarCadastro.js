@@ -3,7 +3,7 @@ const { gravarLinhaLog } = require('../../api_module/util');
 
 const url = "https://nfe.ns.eti.br/util/conscad"
 
-class body {
+class Body {
     constructor(CNPJCont, UF, IE, CNPJ, CPF) {
         this.CNPJCont = CNPJCont;
         this.UF = UF;
@@ -13,7 +13,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({status, motivo, retConsCad, erros}) {
         this.status = status;
         this.motivo = motivo;
@@ -23,13 +23,18 @@ class response {
 }
 
 async function sendPostRequest(conteudo) {
+
     try {
-        let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
         return responseAPI
-    } catch (error) {
-        gravarLinhaLog("[ERRO]")
+
+    } 
+    
+    catch (error) {
+        gravarLinhaLog("[ERRO_CONSULTA_CONTRIBUINTE]: " + error)
     }
 
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

@@ -5,7 +5,7 @@ const util = require("../../api_module/util")
 
 const url = "https://nfe.ns.eti.br/nfe/get"
 
-class body {
+class Body {
     constructor(chNFe, tpDown, tpAmb) {
         this.chNFe = chNFe;
         this.tpDown = tpDown;
@@ -13,7 +13,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({status, motivo, chNFe, xml, pdf, nfeProc, erros}) {
         this.status = status;
         this.motivo = motivo;
@@ -26,8 +26,9 @@ class response {
 }
 
 async function sendPostRequest(body, caminho) {
+    
     try {
-        let responseAPI = new response(await nsAPI.PostRequest(url, body))
+        let responseAPI = new Response(await nsAPI.PostRequest(url, body))
 
         if (responseAPI.json != null) {
             util.salvarArquivo(caminho, responseAPI.chNFe, "-nfeProc.json", responseAPI.json)
@@ -54,5 +55,5 @@ async function sendPostRequest(body, caminho) {
 
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }
 

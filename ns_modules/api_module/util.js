@@ -22,17 +22,20 @@ function gravarLinhaLog(registro) {
     try {
 
         if (!fs.existsSync(caminhoLog)) {
+
             try {
                 salvarArquivo(caminhoLog, fileName, ".log", logTime + " " + registro + "\r\n")
             }
+
             catch (error) {
                 console.log("ERRO_GERAR_ARQUIVO_LOG: " + error)
             }
         }
 
         else {
+
             fs.appendFile(path.join(caminhoLog, fileName + ".log"), logTime + " " + registro + "\r\n", function (err) {
-                if (err) {console.log(err)}
+                if (err) { console.log("ERRO_GERAR_DIRETORIO_LOGS: " + err) }
             })
         }
     }
@@ -47,7 +50,7 @@ async function salvarArquivo(caminho, nomeArquivo, extensao, conteudo) {
     var caminhoSalvar = path.join(caminho, nomeArquivo + extensao)
 
     try {
-        if (!fs.existsSync(caminho)){fs.mkdirSync(caminho)}
+        if (!fs.existsSync(caminho)) { fs.mkdirSync(caminho) }
     }
 
     catch (err) {
@@ -61,7 +64,7 @@ async function salvarArquivo(caminho, nomeArquivo, extensao, conteudo) {
 
 }
 
-function gerarHashCompEntrega(chave, imagem){
+function gerarHashCompEntrega(chave, imagem) {
 
     var base64Imagem = fs.readFileSync(imagem, { encoding: 'base64' });
 

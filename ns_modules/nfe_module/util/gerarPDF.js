@@ -1,7 +1,7 @@
 const nsAPI = require('../../api_module/nsAPI')
 const url = "https://nfe.ns.eti.br/util/generatepdf"
 
-class body {
+class Body {
     constructor(xml, printCEAN, obsCanhoto) {
         this.xml = xml;
         this.printCEAN = printCEAN;
@@ -9,7 +9,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, pdf }) {
         this.status = status;
         this.motivo = motivo;
@@ -18,8 +18,18 @@ class response {
 }
 
 async function sendPostRequest(conteudo) {
-    let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
-    return responseAPI
+
+    try {
+
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
+        return responseAPI
+
+    }
+
+    catch (error) {
+        gravarLinhaLog("[ERRO_OBTER_PDF]: " + error)
+    }
+
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

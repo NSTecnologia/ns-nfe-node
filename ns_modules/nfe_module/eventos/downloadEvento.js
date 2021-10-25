@@ -3,7 +3,7 @@ const util = require('../../api_module/util')
 
 const url = "https://nfe.ns.eti.br/nfe/get/event"
 
-class body {
+class Body {
     constructor(chNFe, tpAmb, tpDown, tpEvento, nSeqEvento) {
         this.chNFe = chNFe;
         this.tpAmb = tpAmb;
@@ -13,7 +13,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retEvento, erros, xml, pdf, json }) {
         this.status = status;
         this.motivo = motivo;
@@ -26,8 +26,10 @@ class response {
 }
 
 async function sendPostRequest(conteudo, caminhoSalvar) {
+
     try {
-        let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
         var idEvento = ""
 
@@ -57,7 +59,9 @@ async function sendPostRequest(conteudo, caminhoSalvar) {
         }
 
         return responseAPI
-    } catch (error) {
+    } 
+    
+    catch (error) {
         util.gravarLinhaLog("[ERRO_DOWNLOAD_EVENTO]: " + error)
         return error
     }
@@ -65,4 +69,4 @@ async function sendPostRequest(conteudo, caminhoSalvar) {
     
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }
