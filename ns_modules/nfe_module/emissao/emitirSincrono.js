@@ -31,7 +31,7 @@ async function emitirNFeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
         
         respostaSincrona.statusEnvio = emissaoResponse.status
 
-        let statusBody = new statusProcessamento.body(
+        let statusBody = new statusProcessamento.Body(
             configParceiro.CNPJ,
             emissaoResponse.nsNRec,
             tpAmb
