@@ -58,8 +58,10 @@ async function salvarArquivo(caminho, nomeArquivo, extensao, conteudo) {
     }
 
     fs.writeFile(caminhoSalvar, conteudo, function (err) {
-        if (err) throw err;
-        console.log("ERRO_SALVAR_ARQUIVO: " + err);
+        if (err) {
+            console.log("ERRO_SALVAR_ARQUIVO: " + err)
+            throw err;
+        }
     });
 
 }
