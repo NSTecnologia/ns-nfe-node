@@ -1,6 +1,6 @@
 {
   "_from": "ns-nfe-node",
-  "_id": "ns-nfe-node@1.0.6",
+  "_id": "ns-nfe-node@1.0.7",
   "_inBundle": false,
   "_integrity": "sha512-Tb0opPOMmlHGWlbwzUZDOXyG9YNn8dERZlZ07MF37EtvsC9m3SNe2Dt8SqunjsXjKhZK8Wl+UkcNan1uq4dktw==",
   "_location": "/ns-nfe-node",
@@ -46,5 +46,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.6"
+  "version": "1.0.7"
 }
