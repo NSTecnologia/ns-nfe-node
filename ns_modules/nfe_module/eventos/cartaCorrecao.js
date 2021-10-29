@@ -1,4 +1,5 @@
 const nsAPI = require('../../api_module/nsAPI')
+const { gravarLinhaLog } = require('../../api_module/util');
 const downloadEvento = require('./downloadEvento')
 
 const url = "https://nfe.ns.eti.br/nfe/cce"
@@ -32,7 +33,7 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
 
             if (responseAPI.retEvento.cStat == 135) {
 
-                let downloadEventoBody = new downloadEvento.body(
+                let downloadEventoBody = new downloadEvento.Body(
                     responseAPI.retEvento.chNFe,
                     conteudo.tpAmb,
                     tpDown,
