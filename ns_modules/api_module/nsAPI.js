@@ -8,7 +8,8 @@ const header = {
 }
 
 async function PostRequest(url, body) {
-
+	
+	//grava linha dos logs
     util.gravarLinhaLog('[URL_ENVIO]: ' + JSON.stringify(url))
     util.gravarLinhaLog('[DADOS_ENVIO]: ' + JSON.stringify(body))
 
