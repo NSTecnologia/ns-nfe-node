@@ -17,11 +17,11 @@ class Body {
 }
 
 class Response {
-    constructor({ status, motivo, retornoInutNFe, erros }) {
+    constructor({ status, motivo, retornoInutNFe, erro }) {
         this.status = status;
         this.motivo = motivo;
         this.retornoInutNFe = retornoInutNFe;
-        this.erros = erros
+        this.erro = erro
     }
 }
 
@@ -31,7 +31,7 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
         
         let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
-        if (responseAPI.status == 200){
+        if (responseAPI.status == 102){
 
         let downloadInutBody = new downloadInut.Body(responseAPI.retornoInutNFe.chave, "2", tpDown)
 

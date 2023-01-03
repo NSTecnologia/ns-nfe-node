@@ -133,7 +133,7 @@ Para realizarmos um cancelamento de uma NFe, devemos gerar o objeto do corpo da 
        const cancelarNFe = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/eventos/cancelamento')
        const util = require('./node_modules/ns-nfe-node/ns_modules/api_module/util')
 
-       let corpo = new cancelarNFe.body(
+       let corpo = new cancelarNFe.Body(
            "43210914139046000109550000000257891100116493",
            "2",
            util.dhEmiGet(),
@@ -157,7 +157,7 @@ Para emitirmos uma carta de correção de uma NFe, devemos gerar o objeto do cor
        const cartaCorrecaoNFe = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/eventos/cartaCorrecao')
        const util = require('./node_modules/ns-nfe-node/ns_modules/api_module/util')
 
-       let corpo = new cartaCorrecaoNFe.body(
+       let corpo = new cartaCorrecaoNFe.Body(
            "43210914139046000109550000000257891100116493",
            "2",
            util.dhEmiGet(),
@@ -179,7 +179,7 @@ Para emitirmos uma inutilização de numeração da NFe, devemos gerar o objeto 
 
        const inutilizarNFe = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/eventos/inutilizacao')
 
-       let corpo = new inutilizarNFe.body("43", "2", "21", "14139046000109", "0", "22539", "22539", "INUTILIZADO PARA TESTES DE INTEGRACAO")
+       let corpo = new inutilizarNFe.Body("43", "2", "21", "14139046000109", "0", "22539", "22539", "INUTILIZADO PARA TESTES DE INTEGRACAO")
 
        inutilizarNFe.sendPostRequest(corpo, "X", "Documentos/NFe/Eventos").then(getResponse => { console.log(getResponse) })
         
@@ -198,7 +198,7 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
 
        const consultaCad = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/consultarCadastro')
 
-       let corpo = new consultaCad.body(
+       let corpo = new consultaCad.Body(
            "14139046000109",
            "RS",
            "190185748"
@@ -209,7 +209,7 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
 ### Consultar situação de NFe
         
        const consultarNFe = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/consultarSituacao')
-       let corpo = new consultarNFe.body("14139046000109","43210914139046000109550000000257891100116493","2","4.00")
+       let corpo = new consultarNFe.Body("14139046000109","43210914139046000109550000000257891100116493","2","4.00")
 
        consultarNFe.sendPostRequest(corpo).then(() => {})
         
@@ -217,7 +217,7 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
 
        const consultarStatusWS = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/consultarStatusWS')
 
-       let corpo = new consultarStatusWS.body(
+       let corpo = new consultarStatusWS.Body(
            "14139046000109",
            "43",
            "2",
@@ -230,7 +230,7 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
         
        const enviarEmail = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/envioEmail')
 
-       let corpo = new enviarEmail.body(
+       let corpo = new enviarEmail.Body(
            "43210914139046000109550000000257891100116493",
            "2",
            "true",
@@ -243,7 +243,7 @@ Ainda com esta biblioteca, é possivel acessar método utilitários da API de NF
 ### Listagem de nsNRec's vinculados à uma NFe
 
        const listarNSNRec = require('./node_modules/ns-nfe-node/ns_modules/nfe_module/util/listarNSNrec')
-       let corpo = new listarNSNRec.body("43210914139046000109550000000257891100116493")
+       let corpo = new listarNSNRec.Body("43210914139046000109550000000257891100116493")
 
        listarNSNRec.sendPostRequest(corpo).then(() => {})
 

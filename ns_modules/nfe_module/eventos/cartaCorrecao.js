@@ -15,11 +15,11 @@ class Body {
 }
 
 class Response {
-    constructor({ status, motivo, retEvento, erros }) {
+    constructor({ status, motivo, retEvento, erro }) {
         this.status = status;
         this.motivo = motivo;
         this.retEvento = retEvento;
-        this.erros = erros
+        this.erros = erro
     }
 }
 
