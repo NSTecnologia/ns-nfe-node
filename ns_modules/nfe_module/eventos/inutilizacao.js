@@ -31,6 +31,8 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
         
         let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
+        if (responseAPI.status == 200){
+
         let downloadInutBody = new downloadInut.Body(responseAPI.retornoInutNFe.chave, "2", tpDown)
 
         let downloadInutResponse = await downloadInut.sendPostRequest(downloadInutBody, caminhoSalvar)
@@ -38,6 +40,10 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
         return downloadInutResponse
 
     } 
+    else{
+        return responseAPI
+    }
+}
     
     catch (error) {
         
